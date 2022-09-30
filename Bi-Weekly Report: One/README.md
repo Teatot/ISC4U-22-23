@@ -1,4 +1,5 @@
-# ISC4U-22-23
+September 30, 2022 - Bi-weekly Report 1
 
-All the content done over the past sesion can be found in this folder
+
+This is all the content done in this sesion 
 
