@@ -110,7 +110,7 @@ class Player(pygame.sprite.Sprite):
             if self.last_ground_pos[0] + 50 > self.rect.midbottom[0] + 6:
                 if self.closest_leftRect.left < self.rect.right and self.closest_leftRect.top < self.rect.bottom and self.rect.midbottom[0] + 6 > self.last_ground_pos[0]:
                     self.bounce = False
-                    self.y = self.closest_topRect.top if abs(self.closest_topRect.top - self.y) < abs(500 - self.y) else 500
+                    self.y = 500
                     print(f"{abs(self.closest_topRect.top - self.y)} comparing to {abs(500 - self.y)}")
                 else:
                     self.x += 6
@@ -120,7 +120,7 @@ class Player(pygame.sprite.Sprite):
                     self.base_values.pop()
             else:
                 self.bounce = False
-                self.y = self.closest_topRect.top if abs(self.closest_topRect.top - self.y) < abs(500 - self.y) else 500
+                self.y = 500
                 print(f"{abs(self.closest_topRect.top - self.y)} comparing to {abs(500 - self.y)}")
 
         # Bouncing off Left Wall
@@ -128,7 +128,7 @@ class Player(pygame.sprite.Sprite):
             if self.last_ground_pos[0] - 50 < self.rect.midbottom[0] - 6:
                 if self.closest_rightRect.right > self.rect.left and self.closest_rightRect.top < self.rect.bottom and self.rect.midbottom[0] - 6 < self.last_ground_pos[0]:
                     self.bounce = False
-                    self.y = self.closest_topRect.top if abs(self.closest_topRect.top - self.y) < abs(500 - self.y) else 500
+                    self.y = 500
                 else:
                     self.x -= 6
                     self.rect.x -= 6
@@ -137,7 +137,7 @@ class Player(pygame.sprite.Sprite):
                     self.base_values.pop()
             else:
                 self.bounce = False
-                self.y = self.closest_topRect.top if abs(self.closest_topRect.top - self.y) < abs(500 - self.y) else 500
+                self.y = 500
 
     def Find_Closest(self, rects, index):
         global pos_rects, ref_value
