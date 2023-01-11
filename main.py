@@ -29,8 +29,8 @@ class Player(pygame.sprite.Sprite):
         self.bounce = None
 
         # Positional Varibles
-        self.x = 50
-        self.y = 500
+        self.x = 50 #
+        self.y = 500 # Default Starting Position 
         self.jump_power = 0
         self.gravity = 0
         self.move_val = 3
@@ -126,7 +126,7 @@ class Player(pygame.sprite.Sprite):
             if self.last_ground_pos[0] - 50 < self.rect.midbottom[0] - 6:
                 if self.closest_rightRect.right > self.rect.left and self.closest_rightRect.top < self.rect.bottom and self.rect.midbottom[0] - 6 < self.last_ground_pos[0]:
                     self.bounce = False
-                    self.y = 500
+                    self.y = 500 # Set the user to fall 
                 else:
                     self.x -= 6
                     self.rect.x -= 6
@@ -135,7 +135,7 @@ class Player(pygame.sprite.Sprite):
                     self.base_values.pop()
             else:
                 self.bounce = False
-                self.y = 500
+                self.y = 500  # Set the user to fall 
 
     def Find_Closest(self, rects, index):
         global pos_rects, ref_value
