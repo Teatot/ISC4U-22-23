@@ -108,9 +108,15 @@ class Player(pygame.sprite.Sprite):
         # Bouncing off Right Wall
         if self.face:
             if self.last_ground_pos[0] + 50 > self.rect.midbottom[0] + 6:
+                # Colliding with the opposite wall (left)
                 if self.closest_leftRect.left < self.rect.right and self.closest_leftRect.top < self.rect.bottom and self.rect.midbottom[0] + 6 > self.last_ground_pos[0]:
                     self.bounce = False
                     self.y = 500  # Sets the user to fall
+                # Colliding with a platform above
+                elif self.rect.top - round(math.log(6, self.base_values[-1]), 2) < self.closest_bottomRect.bottom and self.rect.clipline(self.closest_bottomRect.left, self.closest_bottomRect.bottom,self.closest_bottomRect.right,self.closest_bottomRect.bottom):
+                    self.bounce = False
+                    self.y = 500 # Set the user to fall
+                    self.gravity = 5
                 else:
                     self.x += 6
                     self.rect.x += 6
@@ -124,9 +130,15 @@ class Player(pygame.sprite.Sprite):
         # Bouncing off Left Wall
         elif not self.face:
             if self.last_ground_pos[0] - 50 < self.rect.midbottom[0] - 6:
+                # Colliding with the opposite wall (right)
                 if self.closest_rightRect.right > self.rect.left and self.closest_rightRect.top < self.rect.bottom and self.rect.midbottom[0] - 6 < self.last_ground_pos[0]:
                     self.bounce = False
                     self.y = 500 # Set the user to fall 
+                # Collidng with bottom of a platform above
+                elif self.rect.top - round(math.log(6, self.base_values[-1]), 2) < self.closest_bottomRect.bottom and self.rect.clipline(self.closest_bottomRect.left, self.closest_bottomRect.bottom,self.closest_bottomRect.right,self.closest_bottomRect.bottom):
+                    self.bounce = False
+                    self.y = 500 # Set the user to fall
+                    self.gravity = 5
                 else:
                     self.x -= 6
                     self.rect.x -= 6
@@ -192,7 +204,7 @@ class Player(pygame.sprite.Sprite):
 
         # Colliding with the Right side of a wall
         if self.rect.clipline(self.closest_rightRect.right, self.closest_rightRect.top, self.closest_rightRect.right,
-                              self.closest_rightRect.bottom) and not self.collision_fall:
+                              self.closest_rightRect.bottom):
             if self.rect.bottom == self.y:  # Player on standing
                 self.rect.left = self.closest_rightRect.right
                 self.x += 2
@@ -202,15 +214,15 @@ class Player(pygame.sprite.Sprite):
                 self.bounce = True  # Initiates the bouncing off the wall phase
                 self.face = True  # Change facing direction to Left
                 self.base_values = [1 + (x * 0.05) for x in
-                                    range(int(abs(self.last_ground_pos[0] + 50 - self.closest_rightRect.right) / 6), 0,
-                                          -1)]
+                                    range(int(abs(self.last_ground_pos[0] + 50 - self.closest_rightRect.right) / 6), 0,-1)]
             elif self.gravity > 0:  # User is falling
                 self.move_val = 0  # Cannot Move in the air
                 self.rect.x += 6  # Energy Released back (Prevents further bugs)
+                self.collision_fall = True
 
         # Colliding with the Left side of a wall
         if self.rect.clipline(self.closest_leftRect.left, self.closest_leftRect.top, self.closest_leftRect.left,
-                              self.closest_leftRect.bottom) and not self.collision_fall:
+                              self.closest_leftRect.bottom):
             if self.rect.bottom == self.y:  # Player Standing
                 self.rect.right = self.closest_leftRect.left
                 self.x -= 2
@@ -220,11 +232,11 @@ class Player(pygame.sprite.Sprite):
                 self.bounce = True  # Initiates the bouncing off the wall Phase
                 self.face = False  # Change facing direction to Right
                 self.base_values = [1 + (x * 0.05) for x in
-                                    range(int(abs(self.last_ground_pos[0] - 50 - self.closest_leftRect.left) / 6), 0,
-                                          -1)]
+                                    range(int(abs(self.last_ground_pos[0] - 50 - self.closest_leftRect.left) / 6), 0, -1)]
             elif self.gravity > 0:  # User is falling
                 self.move_val = 0  # Cannot Move in the air
                 self.rect.x -= 6  # Energy Released back (Prevents further bugs)
+                self.collision_fall = True 
 
         # Falling off a platform
         elif self.rect.right < self.closest_topRect.left or self.rect.left > self.closest_topRect.right:
@@ -258,6 +270,8 @@ class Player(pygame.sprite.Sprite):
         else:
             self.apply_gravity()  #
 
+        return self.rect.top
+
 
 # Levels
 class Levels:
@@ -267,7 +281,6 @@ class Levels:
         self.bg = pygame.image.load("images/background.png").convert_alpha()
 
     def Beginner_Room(self):  # Level One
-
         screen.blit(self.bg, (0, 0))
 
         # Barriers
@@ -290,9 +303,17 @@ class Levels:
         pygame.draw.rect(screen, "black", block3)
         pygame.draw.rect(screen, "black", block4)
         pygame.draw.rect(screen, "black", block5)
-        pygame.draw.rect(screen, "black", block6)
+        pygame.draw.rect(screen, "red", block6)
 
         return [wall_right, wall_left, block1, block2, block3, block4, block5, block6]
+
+    def StageOne (self):
+        screen.blit(self.bg, (0,0))
+        block1 = pygame.Rect(475, 0, 50, 50)
+
+        pygame.draw.rect(screen, "black", block1)
+
+        return [block1]
 
 
 # Initialization of Levels
@@ -301,18 +322,22 @@ room = Levels()
 # Creating Player Group
 player = pygame.sprite.GroupSingle()  # Creates the sprite group
 player.add(Player())  # Adds our class: player to sprite group
-broad = []
+cur_height = 500
 # Main Code
 while True:
+    global hazards
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
 
-    hazards = room.Beginner_Room()
+    if cur_height <= 500:
+        hazards = room.StageOne()
+    else: 
+        hazards = room.Beginner_Room
 
     player.draw(screen)
-    player.update(hazards)
+    cur_height = player.update(hazards)
 
     pygame.display.update()
     clock.tick(60)  # Runs at 60fps
