@@ -34,6 +34,11 @@ class Menu:
         # Menu Bar Activation
         self.menubar_open = False
 
+        # Audio Initialization
+        self.menu_music = pygame.mixer.Sound("audios/openingProduction.mp3")
+        self.menu_music.set_volume(0.5)    # Sets original audio volume to half
+        self.menu_music.play(loops=-1)
+
 
 
     def HomeScreen(self, cont, play, instruc, quit_x, stats, host):
@@ -99,6 +104,7 @@ class Menu:
                 play = True
                 cont = True
                 stats[0] += 1
+                self.menu_music.stop()   # Stops the Music
 
             elif b_start_rect.collidepoint(mx, my) and l_click:  # Start Game is pressed
                 play = True
@@ -106,13 +112,14 @@ class Menu:
                 stats[0] = 1
                 # Setting to Said Level
                 host.bg = pygame.image.load("images/background.png").convert_alpha()
-                host.nxt_lvl = ["6", "5", "4", "3", "2", "1", "beg"]
+                host.nxt_lvl = ["12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "beg"]
                 host.prev_lvl = []
                 # Resetting Player's Sprite
                 host.player.x = 50
                 host.player.y = 500
                 host.player.rect.bottom = 500
                 host.player.rect.left = 50
+                self.menu_music.stop()  # Stops the Music
 
             elif b_controls_rect.collidepoint(mx, my) and l_click:  # Controls button is pressed
                 instruc = True
@@ -267,6 +274,7 @@ class Menu:
             if b_returnHome.collidepoint(x, y) and lclick:  # Return Home Button Clicked
                 play = False
                 cont = False
+                self.menu_music.play(loops=-1)  # Plays music
 
             elif b_levelOne_rect.collidepoint(x, y) and lclick:   # Level One Button Clicked
                 # Setting to Said Level
