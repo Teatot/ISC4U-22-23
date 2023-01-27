@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8594c534-f7a5-4ce7-bfe1-0000f93ded1e" name="Changes" comment="Updated TitleScreens">
-      <change afterPath="$PROJECT_DIR$/audios/Landing.mp3" afterDir="false" />
+    <list default="true" id="8594c534-f7a5-4ce7-bfe1-0000f93ded1e" name="Changes" comment="Added Collision and Jumping SFX">
+      <change afterPath="$PROJECT_DIR$/audios/Victory.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TitleScreens.py" beforeDir="false" afterPath="$PROJECT_DIR$/TitleScreens.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,15 +42,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/tonychen/Documents/GitHub/ISC4U-22-23/Final Result",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/tonychen/Documents/GitHub/ISC4U-22-23/Final Result&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -94,7 +95,21 @@
       <option name="project" value="LOCAL" />
       <updated>1674781380746</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added Collision and Jumping SFX">
+      <created>1674785140208</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1674785140208</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added Collision and Jumping SFX">
+      <created>1674785147542</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1674785147542</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -125,6 +140,7 @@
     <MESSAGE value="Added Audio Folder and added a song" />
     <MESSAGE value="A" />
     <MESSAGE value="Updated TitleScreens" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated TitleScreens" />
+    <MESSAGE value="Added Collision and Jumping SFX" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Collision and Jumping SFX" />
   </component>
 </project>

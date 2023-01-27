@@ -912,6 +912,7 @@ while True:
                 player_stats[1] = player.sprite.number_of_jumps  # Updates Jump counter
                 player_stats[2] = pygame.time.get_ticks() - player_time  # Updates Clock Timer
                 closing_ceremony = True     # Starts Closing Ceremony
+                menu.victory_music.play(loops=-1)   # Plays the victory music
                 play = False
                 cont = True  # Disables Continue button
         else:   # normal gameplay occurs

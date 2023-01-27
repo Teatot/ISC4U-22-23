@@ -36,8 +36,11 @@ class Menu:
 
         # Audio Initialization
         self.menu_music = pygame.mixer.Sound("audios/openingProduction.mp3")
+        self.victory_music = pygame.mixer.Sound("audios/Victory.mp3")
         self.menu_music.set_volume(0.5)    # Sets original audio volume to half
-        self.menu_music.play(loops=-1)
+        self.victory_music.set_volume(0.5)
+
+        self.menu_music.play(loops=-1)  # Begins to play menu music
 
 
 
@@ -353,12 +356,13 @@ class Menu:
         lclick, midclick, rclick = pygame.mouse.get_pressed()
         if b_return.collidepoint(x, y) and lclick:
             ceremony = False
-            self.menu_music.play(loops=-1)  # Plays Music
+            self.victory_music.stop()   # Stops the victory music
+            self.menu_music.play(loops=-1)  # Plays Menu Music
 
         return ceremony
 
 
-    def timeConversion(self, time):
+    def timeConversion(self, time):     # Changes milliseconds into mins and seconds
         seconds = time/1000
         minutes = math.floor(seconds/60)
         seconds = math.floor(seconds - (60 * minutes))
