@@ -30,6 +30,7 @@ class Player(pygame.sprite.Sprite):
         self.collision_fall = False
         self.face = False  # Where is the sprite facing (True = Left, False = Right)
         self.bounce = None
+        self.air = False    # Sprite is in mid-air
 
         # Positional Variables
         self.x = 50  #
@@ -39,6 +40,12 @@ class Player(pygame.sprite.Sprite):
         self.move_val = 3
         self.aerial = 0
         self.last_ground_pos = (self.x, self.y)
+
+        # Importing Music
+        self.collision_sfx = pygame.mixer.Sound("audios/Collision.mp3")
+        self.land_sfx = pygame.mixer.Sound("audios/Landing.mp3")
+        self.collision_sfx.set_volume(0.1)
+        self.land_sfx.set_volume(0.1)
 
         self.image = pygame.image.load("images/stand.png").convert_alpha()  # Default State: Standing
         self.rect = self.image.get_rect(midbottom=(self.x, self.y))
@@ -213,8 +220,12 @@ class Player(pygame.sprite.Sprite):
                               self.closest_topRect.right - 1,
                               self.closest_topRect.top - self.gravity - 3) and self.rect.bottom <= self.closest_topRect.top:
             self.y = self.closest_topRect.top
+            # Sprite landed
+            if self.air:
+                self.land_sfx.play()  # Plays land sfx
+                self.air = False
 
-        # Colliding with the Right side of a wall
+                # Colliding with the Right side of a wall
         if self.rect.clipline(self.closest_rightRect.right, self.closest_rightRect.top, self.closest_rightRect.right,
                               self.closest_rightRect.bottom):
             if self.rect.bottom == self.y:  # Player on standing
@@ -222,6 +233,7 @@ class Player(pygame.sprite.Sprite):
                 self.x += 2
                 self.right_blocked = True
             elif self.gravity < 0:  # Bouncing
+                self.collision_sfx.play()   # Plays collision sfx
                 self.gravity = 0  # Resets the gravity value
                 self.bounce = True  # Initiates the bouncing off the wall phase
                 self.face = True  # Change facing direction to Left
@@ -241,6 +253,7 @@ class Player(pygame.sprite.Sprite):
                 self.x -= 2
                 self.left_blocked = True
             elif self.gravity < 0:  # Bouncing
+                self.collision_sfx.play()  # Plays collision sfx
                 self.gravity = 0  # Resets the gravity value
                 self.bounce = True  # Initiates the bouncing off the wall Phase
                 self.face = False  # Change facing direction to Right
@@ -277,6 +290,9 @@ class Player(pygame.sprite.Sprite):
     def update(self, objs):
         self.player_move()  # Get Input
         self.player_animation()  # Display Animations
+        # Checks if the sprite is in the air
+        if self.gravity != 0:
+            self.air = True
         self.check_collision(objs)
         if self.bounce:
             self.move_val = 0
