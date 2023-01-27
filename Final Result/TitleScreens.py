@@ -353,6 +353,7 @@ class Menu:
         lclick, midclick, rclick = pygame.mouse.get_pressed()
         if b_return.collidepoint(x, y) and lclick:
             ceremony = False
+            self.menu_music.play(loops=-1)  # Plays Music
 
         return ceremony
 

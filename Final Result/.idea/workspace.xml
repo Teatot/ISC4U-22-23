@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8594c534-f7a5-4ce7-bfe1-0000f93ded1e" name="Changes" comment="Added Audio Folder and added a song">
+    <list default="true" id="8594c534-f7a5-4ce7-bfe1-0000f93ded1e" name="Changes" comment="Updated TitleScreens">
+      <change afterPath="$PROJECT_DIR$/audios/Jumping.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audios/Landing.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TitleScreens.py" beforeDir="false" afterPath="$PROJECT_DIR$/TitleScreens.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +82,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674775397015</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Updated TitleScreens">
+      <created>1674776151990</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1674776151990</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -108,6 +118,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Update README.md" />
     <MESSAGE value="Added Audio Folder and added a song" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Audio Folder and added a song" />
+    <MESSAGE value="A" />
+    <MESSAGE value="Updated TitleScreens" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated TitleScreens" />
   </component>
 </project>
