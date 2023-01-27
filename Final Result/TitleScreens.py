@@ -26,6 +26,7 @@ class Menu:
         # State Variables
         self.direct = False
         self.charging = False
+        self.game_finished = False
 
         # Action Variables
         self.charge = 0
@@ -85,6 +86,11 @@ class Menu:
         self.screen.blit(t_attempts, (375, 275))
         self.screen.blit(t_jumps, (400, 310))
         self.screen.blit(t_games, (375, 345))
+        # Only displays if the user finished the game
+        if self.game_finished:
+            # Image Import
+            staple_completion = pygame.transform.rotate(pygame.image.load("images/finished.png").convert_alpha(), -30)
+            self.screen.blit(staple_completion, (525, 265))
 
         # System Scanning (User Interaction)
         mx, my = pygame.mouse.get_pos()
@@ -112,6 +118,7 @@ class Menu:
             elif b_start_rect.collidepoint(mx, my) and l_click:  # Start Game is pressed
                 play = True
                 cont = False
+                self.game_finished = False
                 stats[0] = 1
                 # Setting to Said Level
                 host.bg = pygame.image.load("images/background.png").convert_alpha()
