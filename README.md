@@ -1,3 +1,3 @@
-<h><b>Contents of the Repo</b></h>
+<h><strong>Contents of the Repo</strong></h>
 
 
